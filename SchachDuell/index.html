@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Chess</title>  
+</head>
+<body>
+    <header>
+        <a src="inddex.html" class="siteName">SchachDuell</a>
+    </header>
+
+    <div class="isItCheck"></div>
+        
+    <table class="Chessboard">
+        <tr data-value="8">
+            <th class="white" data-value="1" data-attacked="0"><image class="piece" id="black-rook" data-state="0" src="pieces/black-rook.svg"/></th>
+            <th class="black" data-value="2" data-attacked="0"><image class="piece" id="black-knight" src="pieces/black-knight.svg"/></th>
+            <th class="white" data-value="3" data-attacked="0"><image class="piece" id="black-bishop" data-identity="1" src="pieces/black-bishop.svg"/></th>
+            <th class="black" data-value="4" data-attacked="0"><image class="piece" id="black-queen" src="pieces/black-queen.svg"/></th>
+            <th class="white" data-value="5" data-attacked="0"><image class="piece" id="black-king" data-state="0" src="pieces/black-king.svg"/></th>
+            <th class="black" data-value="6" data-attacked="0"><image class="piece" id="black-bishop" data-identity="2" src="pieces/black-bishop.svg"/></th>
+            <th class="white" data-value="7" data-attacked="0"><image class="piece" id="black-knight" src="pieces/black-knight.svg"/></th>
+            <th class="black" data-value="8" data-attacked="0"><image class="piece" id="black-rook" data-state="0" src="pieces/black-rook.svg"/></th>
+        </tr>
+        <tr data-value="7">
+            <th class="black" data-value="1" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+            <th class="white" data-value="2" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+            <th class="black" data-value="3" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+            <th class="white" data-value="4" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+            <th class="black" data-value="5" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+            <th class="white" data-value="6" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+            <th class="black" data-value="7" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+            <th class="white" data-value="8" data-attacked="0"><image class="piece" id="black-pawn" data-state="0" data-enpassantable="no" src="pieces/black-pawn.svg"/></th>
+        </tr>
+        <tr data-value="6">
+            <th class="white" data-value="1" data-attacked="0"></th>
+            <th class="black" data-value="2" data-attacked="0"></th>
+            <th class="white" data-value="3" data-attacked="0"></th>
+            <th class="black" data-value="4" data-attacked="0"></th>
+            <th class="white" data-value="5" data-attacked="0"></th>
+            <th class="black" data-value="6" data-attacked="0"></th>
+            <th class="white" data-value="7" data-attacked="0"></th>
+            <th class="black" data-value="8" data-attacked="0"></th>
+        </tr>
+        <tr data-value="5">
+            <th class="black" data-value="1" data-attacked="0"></th>
+            <th class="white" data-value="2" data-attacked="0"></th>
+            <th class="black" data-value="3" data-attacked="0"></th>
+            <th class="white" data-value="4" data-attacked="0"></th>
+            <th class="black" data-value="5" data-attacked="0"></th>
+            <th class="white" data-value="6" data-attacked="0"></th>
+            <th class="black" data-value="7" data-attacked="0"></th>
+            <th class="white" data-value="8" data-attacked="0"></th>
+        </tr>
+        <tr data-value="4">
+            <th class="white" data-value="1" data-attacked="0"></th>
+            <th class="black" data-value="2" data-attacked="0"></th>
+            <th class="white" data-value="3" data-attacked="0"></th>
+            <th class="black" data-value="4" data-attacked="0"></th>
+            <th class="white" data-value="5" data-attacked="0"></th>
+            <th class="black" data-value="6" data-attacked="0"></th>
+            <th class="white" data-value="7" data-attacked="0"></th>
+            <th class="black" data-value="8" data-attacked="0"></th>
+        </tr>
+        <tr data-value="3">
+            <th class="black" data-value="1" data-attacked="0"></th>
+            <th class="white" data-value="2" data-attacked="0"></th>
+            <th class="black" data-value="3" data-attacked="0"></th>
+            <th class="white" data-value="4" data-attacked="0"></th>
+            <th class="black" data-value="5" data-attacked="0"></th>
+            <th class="white" data-value="6" data-attacked="0"></th>
+            <th class="black" data-value="7" data-attacked="0"></th>
+            <th class="white" data-value="8" data-attacked="0"></th>
+        </tr>
+        <tr data-value="2">
+            <th class="white" data-value="1" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+            <th class="black" data-value="2" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+            <th class="white" data-value="3" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+            <th class="black" data-value="4" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+            <th class="white" data-value="5" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+            <th class="black" data-value="6" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+            <th class="white" data-value="7" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+            <th class="black" data-value="8" data-attacked="0"><image class="piece" id="white-pawn" data-state="0" data-enpassantable="no" src="pieces/white-pawn.svg"/></th>
+        </tr>
+        <tr data-value="1">
+            <th class="black" data-value="1" data-attacked="0"><image class="piece" id="white-rook" data-state="0" src="pieces/white-rook.svg"/></th>
+            <th class="white" data-value="2" data-attacked="0"><image class="piece" id="white-knight" src="pieces/white-knight.svg"/></th>
+            <th class="black" data-value="3" data-attacked="0"><image class="piece" id="white-bishop" src="pieces/white-bishop.svg"/></th>
+            <th class="white" data-value="4" data-attacked="0"><image class="piece" id="white-queen" src="pieces/white-queen.svg"/></th>
+            <th class="black" data-value="5" data-attacked="0"><image class="piece" id="white-king" data-state="0" src="pieces/white-king.svg"/></th>
+            <th class="white" data-value="6" data-attacked="0"><image class="piece" id="white-bishop" src="pieces/white-bishop.svg"/></th>
+            <th class="black" data-value="7" data-attacked="0"><image class="piece" id="white-knight" src="pieces/white-knight.svg"/></th>
+            <th class="white" data-value="8" data-attacked="0"><image class="piece" id="white-rook" data-state="0" src="pieces/white-rook.svg"/></th>
+        </tr>
+    </table>
+
+    <footer>
+        <div class="nameContainer">
+        <div class="name">Igor Martic</div>
+        <div class="name">David Tanaskovic</div>
+        <div class="name">Nina Wösten</div>
+        <div class="name">Ilona Zinge</div>
+        </div>
+    </footer>
+    <script src="piecelogic.js"></script>
+    <script src="rules.js"></script>
+</body>
+</html>
