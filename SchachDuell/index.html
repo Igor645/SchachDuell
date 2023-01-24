@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <title>Chess</title>  
+    <title>SchachDuell</title>  
 </head>
 <body>
     <header>
@@ -13,7 +13,34 @@
     </header>
 
     <div class="isItCheck"></div>
-        
+    <div class="displayContainer">
+        <div class="matchDetails">
+            <div class="Title">Game Details</div>
+            <div class="move">
+                <div class="moveText">Turn for: </div>
+                <div class="moveIndicator"></div>
+            </div>
+            <div class="promotionTitle">Promotion</div>
+            <div class="promotingPieces">
+                <div class="noPromotion">no pawns have passed</div>
+            </div>
+
+            <div class="eatenTitle">Captured Pieces</div>
+            <div class="eatenContainer">
+                <div class="eaten">
+                    <div class="whoAte">Black</div>
+                    <div class="eatenPieces" id="black">
+                    </div>
+                </div>
+
+                <div class="eaten">
+                    <div class="whoAte">White</div>
+                    <div class="eatenPieces" id="white">
+                    </div>
+                </div>
+            </div>  
+            <button class="restartButton">Reset Game</button>
+        </div>
     <table class="Chessboard">
         <tr data-value="8">
             <th class="white" data-value="1" data-attacked="0"><image class="piece" id="black-rook" data-state="0" src="pieces/black-rook.svg"/></th>
@@ -96,6 +123,13 @@
             <th class="white" data-value="8" data-attacked="0"><image class="piece" id="white-rook" data-state="0" src="pieces/white-rook.svg"/></th>
         </tr>
     </table>
+    <div class="rules">
+        <div class="Title">Rules</div>
+        <div class="content">
+        </div>
+        <button class="viewRules">View</button>
+    </div>
+    </div>
 
     <footer>
         <div class="nameContainer">
