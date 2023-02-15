@@ -1,5 +1,10 @@
+var boardPreMove;
+var wrongMove = false;
+var isRiddleActive = false;
 var chessboard = document.querySelector(".Chessboard");
 var chessrows = chessboard.querySelectorAll("tr");
+var xyClickedPiece = [];
+var xyMovedTo = [];
 var attackingPieces = [];
 var attackingAngle;
 var cellsOnCheck = [];
@@ -12,6 +17,51 @@ var promotionPending = false;
 var chessMove = new Audio('sounds/chessMove.wav');
 var turns = 0;
 var whoIsInCheck = "";
+
+try{
+    getRole();
+}catch{}
+
+if(document.querySelector(".newRiddle") != null){
+    document.querySelector(".newRiddle").addEventListener("click", (event) => {
+        if(riddleButtonDisabled == false){
+        alreadySolved.push(currentRiddle);
+        currentRiddle = Math.floor(Math.random() * riddles.length);
+        while(alreadySolved.includes(currentRiddle)){
+            if(alreadySolved.length != riddles.length){
+                currentRiddle = Math.floor(Math.random() * riddles.length);
+            }
+            else{
+                alreadySolved.shift();
+            }
+        }
+        if(riddles[currentRiddle].role == "white"){
+            turns = 0;
+        }
+        else{
+            turns = 1;
+        }
+        document.querySelectorAll("th").forEach(cell => {
+            cell.dataset.attacked = 0;
+        })
+        renderRiddle();
+        if(turns % 2 == 0){
+            moveTester("black", true)
+        }
+        else if(turns % 2 == 1){
+            moveTester("white", true)
+        }
+        document.querySelectorAll(".dot").forEach(dot => {
+            dot.parentNode.dataset.attacked = 1;
+        })
+        isRiddleActive = false;
+        wrongMove = false;
+        cellsOnCheck = [];
+        
+        addFunctionality();
+        }
+    });
+}
 
 const pieces = {
     "white-pawn": {
@@ -1147,6 +1197,8 @@ function pawnMovement(piece, nextFields, pieceToUse, imageToUse, whatIsRest, col
     document.querySelectorAll(".dot").forEach(dot => {
         dot.addEventListener("click",  (event) => {
             chessMove.play();
+            boardPreMove = document.querySelector(".Chessboard").innerHTML;
+            xyMovedTo = [parseInt(dot.parentNode.dataset.value), parseInt(dot.parentNode.parentNode.dataset.value)]
             event.preventDefault();
             if(dot.parentNode.id === "enPassant"){
                 let pieces = chessboard.querySelectorAll(`.piece`);
@@ -1258,41 +1310,45 @@ function addFunctionality(){
     checkForCheck();
     
     document.querySelectorAll("#white-pawn").forEach(whitepawn =>{
-        whitepawn.addEventListener("click", (event) => {pieces["white-pawn"].move(whitepawn, false)})
+        whitepawn.addEventListener("click", (event) => {pieces["white-pawn"].move(whitepawn, false); getCoordinates(whitepawn)})
     })
     document.querySelectorAll("#black-pawn").forEach(blackpawn =>{
-        blackpawn.addEventListener("click", (event) => {pieces["black-pawn"].move(blackpawn, false)})
+        blackpawn.addEventListener("click", (event) => {pieces["black-pawn"].move(blackpawn, false); getCoordinates(blackpawn)})
     })
     document.querySelectorAll("#white-bishop").forEach(bishop => {
-        bishop.addEventListener("click", (event) => {pieces["bishop"].move(bishop, true, "black", false)})
+        bishop.addEventListener("click", (event) => {pieces["bishop"].move(bishop, true, "black", false); getCoordinates(bishop)})
     })
     document.querySelectorAll("#black-bishop").forEach(bishop => {
-        bishop.addEventListener("click", (event) => {pieces["bishop"].move(bishop, false, "white", false)})
+        bishop.addEventListener("click", (event) => {pieces["bishop"].move(bishop, false, "white", false); getCoordinates(bishop)})
     })
     document.querySelectorAll("#white-rook").forEach(rook => {
-        rook.addEventListener("click", (event) => {pieces["rook"].move(rook, true, "black", false)})
+        rook.addEventListener("click", (event) => {pieces["rook"].move(rook, true, "black", false); getCoordinates(rook)})
     })
     document.querySelectorAll("#black-rook").forEach(rook => {
-        rook.addEventListener("click", (event) => {pieces["rook"].move(rook, false, "white", false)})
+        rook.addEventListener("click", (event) => {pieces["rook"].move(rook, false, "white", false); getCoordinates(rook)})
     })
     document.querySelectorAll("#white-knight").forEach(knight => {
-        knight.addEventListener("click", (event) => {pieces["knight"].move(knight, true, "black", false)})
+        knight.addEventListener("click", (event) => {pieces["knight"].move(knight, true, "black", false); getCoordinates(knight)})
     })
     document.querySelectorAll("#black-knight").forEach(knight => {
-        knight.addEventListener("click", (event) => {pieces["knight"].move(knight, false, "white", false)})
+        knight.addEventListener("click", (event) => {pieces["knight"].move(knight, false, "white", false); getCoordinates(knight)})
     })
     document.querySelectorAll("#white-queen").forEach(queen => {
-        queen.addEventListener("click", (event) => {pieces["queen"].move(queen, true, "black", false)})
+        queen.addEventListener("click", (event) => {pieces["queen"].move(queen, true, "black", false); getCoordinates(queen)})
     })
     document.querySelectorAll("#black-queen").forEach(queen => {
-        queen.addEventListener("click", (event) => {pieces["queen"].move(queen, false, "white", false)})
+        queen.addEventListener("click", (event) => {pieces["queen"].move(queen, false, "white", false); getCoordinates(queen)})
     })
     document.querySelectorAll("#white-king").forEach(king => {
-        king.addEventListener("click", (event) => {pieces["king"].move(king, true, "black", false)})
+        king.addEventListener("click", (event) => {pieces["king"].move(king, true, "black", false); getCoordinates(king)})
     })
     document.querySelectorAll("#black-king").forEach(king => {
-        king.addEventListener("click", (event) => {pieces["king"].move(king, false, "white", false)})
+        king.addEventListener("click", (event) => {pieces["king"].move(king, false, "white", false); getCoordinates(king)})
     })
+}
+
+function getCoordinates(piece){
+    xyClickedPiece = [parseInt(piece.parentNode.dataset.value), parseInt(piece.parentNode.parentNode.dataset.value)]
 }
 
 async function runturn(color){
@@ -1310,6 +1366,7 @@ async function runturn(color){
     let colorString = color;
 
     try{
+        isRiddleActive = await processRiddle();
         document.querySelector(".promotingPieces").innerHTML = `<div class="noPromotion">no pawns have passed</div>`;
     }catch{}
 
@@ -1383,7 +1440,22 @@ async function runturn(color){
 }
 
 function checkForCheck(){
-    if(document.querySelector(".isItCheck") != null){
+    if(isRiddleActive == true){
+        document.querySelectorAll("th").forEach(cell => {
+            cell.dataset.attacked = 0;
+        })
+        if(turns % 2 == 0){
+            moveTester("white", true)
+        }
+        else if(turns % 2 == 1){
+            moveTester("black", true)
+        }
+        document.querySelectorAll(".dot").forEach(dot => {
+            dot.parentNode.dataset.attacked = 1;
+        })
+        dotRemoval();
+    }
+    else if(document.querySelector(".isItCheck") != null){
         document.querySelector(".isItCheck").innerHTML = ""
     }
     let amountOfMoves = [];
@@ -1416,6 +1488,10 @@ function checkForCheck(){
     else if(turns % 2 == 0){
         let colorToCheck = "black"
         let color = "black"
+        if(isRiddleActive == true){
+            color = "white"
+            colorToCheck = "black"
+        }
 
         if(document.querySelector(".isItCheck") != null){
             document.querySelector(".isItCheck").innerHTML = "";
@@ -1487,6 +1563,9 @@ function checkForCheck(){
             turns = "none";
         }
         dotRemoval();
+    }
+    if(isRiddleActive == true && checkmate == false){
+        turns++;
     }
 }
 
@@ -1566,6 +1645,8 @@ function dotFunctionality(element, ImageToUse, pieceToUse, colorString){
     document.querySelectorAll(".dot").forEach(dot => {
         dot.addEventListener("click", (event) => {
             chessMove.play();
+            boardPreMove = document.querySelector(".Chessboard").innerHTML;
+            xyMovedTo = [parseInt(dot.parentNode.dataset.value), parseInt(dot.parentNode.parentNode.dataset.value)]
             event.preventDefault();
             document.querySelectorAll("th").forEach(item => {
                 if(item.id === "enPassant"){
@@ -1653,6 +1734,8 @@ function removeInvalidDots(){
 }
 
 function checkingForPin(element){
+    console.log(pinningPiece)
+    console.log(pieceNotAllowedToMove)
     for(let i = 0; i < collectionOfPinCells.length; i++){
         if(element === pieceNotAllowedToMove[i].querySelector(".piece")){
             let dots = document.querySelectorAll(".dot");

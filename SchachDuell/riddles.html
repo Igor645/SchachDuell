@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>SchachDuell</title>  
+
+</head>
+<body>
+    <header>
+        <a href="index.html" class="siteName">SchachDuell</a>
+        <a href="riddles.html" class="riddleLink">Riddles</a>
+    </header>
+
+    <div class="riddleStatus"></div>
+    <div class="displayContainer">     
+        <table class="Chessboard">
+            <tr data-value="8">
+                <th class="white" data-value="1" data-attacked="0"></th>
+                <th class="black" data-value="2" data-attacked="0"></th>
+                <th class="white" data-value="3" data-attacked="0"></th>
+                <th class="black" data-value="4" data-attacked="0"></th>
+                <th class="white" data-value="5" data-attacked="0"></th>
+                <th class="black" data-value="6" data-attacked="0"></th>
+                <th class="white" data-value="7" data-attacked="0"></th>
+                <th class="black" data-value="8" data-attacked="0"></th>
+            </tr>
+            <tr data-value="7">
+                <th class="black" data-value="1" data-attacked="0"></th>
+                <th class="white" data-value="2" data-attacked="0"></th>
+                <th class="black" data-value="3" data-attacked="0"></th>
+                <th class="white" data-value="4" data-attacked="0"></th>
+                <th class="black" data-value="5" data-attacked="0"></th>
+                <th class="white" data-value="6" data-attacked="0"></th>
+                <th class="black" data-value="7" data-attacked="0"></th>
+                <th class="white" data-value="8" data-attacked="0"></th>
+            </tr>
+            <tr data-value="6">
+                <th class="white" data-value="1" data-attacked="0"></th>
+                <th class="black" data-value="2" data-attacked="0"></th>
+                <th class="white" data-value="3" data-attacked="0"></th>
+                <th class="black" data-value="4" data-attacked="0"></th>
+                <th class="white" data-value="5" data-attacked="0"></th>
+                <th class="black" data-value="6" data-attacked="0"></th>
+                <th class="white" data-value="7" data-attacked="0"></th>
+                <th class="black" data-value="8" data-attacked="0"></th>
+            </tr>
+            <tr data-value="5">
+                <th class="black" data-value="1" data-attacked="0"></th>
+                <th class="white" data-value="2" data-attacked="0"></th>
+                <th class="black" data-value="3" data-attacked="0"></th>
+                <th class="white" data-value="4" data-attacked="0"></th>
+                <th class="black" data-value="5" data-attacked="0"></th>
+                <th class="white" data-value="6" data-attacked="0"></th>
+                <th class="black" data-value="7" data-attacked="0"></th>
+                <th class="white" data-value="8" data-attacked="0"></th>
+            </tr>
+            <tr data-value="4">
+                <th class="white" data-value="1" data-attacked="0"></th>
+                <th class="black" data-value="2" data-attacked="0"></th>
+                <th class="white" data-value="3" data-attacked="0"></th>
+                <th class="black" data-value="4" data-attacked="0"></th>
+                <th class="white" data-value="5" data-attacked="0"></th>
+                <th class="black" data-value="6" data-attacked="0"></th>
+                <th class="white" data-value="7" data-attacked="0"></th>
+                <th class="black" data-value="8" data-attacked="0"></th>
+            </tr>
+            <tr data-value="3">
+                <th class="black" data-value="1" data-attacked="0"></th>
+                <th class="white" data-value="2" data-attacked="0"></th>
+                <th class="black" data-value="3" data-attacked="0"></th>
+                <th class="white" data-value="4" data-attacked="0"></th>
+                <th class="black" data-value="5" data-attacked="0"></th>
+                <th class="white" data-value="6" data-attacked="0"></th>
+                <th class="black" data-value="7" data-attacked="0"></th>
+                <th class="white" data-value="8" data-attacked="0"></th>
+            </tr>
+            <tr data-value="2">
+                <th class="white" data-value="1" data-attacked="0"></th>
+                <th class="black" data-value="2" data-attacked="0"></th>
+                <th class="white" data-value="3" data-attacked="0"></th>
+                <th class="black" data-value="4" data-attacked="0"></th>
+                <th class="white" data-value="5" data-attacked="0"></th>
+                <th class="black" data-value="6" data-attacked="0"></th>
+                <th class="white" data-value="7" data-attacked="0"></th>
+                <th class="black" data-value="8" data-attacked="0"></th>
+            </tr>
+            <tr data-value="1">
+                <th class="black" data-value="1" data-attacked="0"></th>
+                <th class="white" data-value="2" data-attacked="0"></th>
+                <th class="black" data-value="3" data-attacked="0"></th>
+                <th class="white" data-value="4" data-attacked="0"></th>
+                <th class="black" data-value="5" data-attacked="0"></th>
+                <th class="white" data-value="6" data-attacked="0"></th>
+                <th class="black" data-value="7" data-attacked="0"></th>
+                <th class="white" data-value="8" data-attacked="0"></th>
+            </tr>
+        </table>
+        <div class="matchDetails" id="riddle">
+            <div class="Title">Game Details</div>
+            <div class="move" id="riddle">
+                <div class="moveText">Your Role: </div>
+                <div class="roleIndicator"></div>
+            </div> 
+            <div class="promotionTitle">Promotion</div>
+            <div class="promotingPieces" id="riddle">
+                <div class="noPromotion">no pawns have passed</div>
+            </div>
+            <div class="newRiddle">Next Riddle</div>
+        </div>  
+    </div>
+
+    <footer>
+        <div class="nameContainer">
+        <div class="name">Igor Martic</div>
+        <div class="name">David Tanaskovic</div>
+        <div class="name">Nina Wösten</div>
+        <div class="name">Ilona Zinge</div>
+        </div>
+    </footer>
+    <script src="riddle.js"></script>
+    <script src="piecelogic.js"></script>
+</body>
+</html>

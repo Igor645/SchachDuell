@@ -5,6 +5,8 @@
     --headerfooter: rgb(37, 36, 36);
     --detailColor: rgb(43, 43, 43);
     --hoverColor: rgb(20, 20, 20);
+    --greenButton: rgb(62, 213, 62);
+
     /*rgb(255, 200, 33)*/
 }
 
@@ -72,8 +74,6 @@ a{
     width: 45vw;
     height: 45vw;
     border: 0.01em solid black;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 table, tr, td {
@@ -95,6 +95,12 @@ table, tr, td {
     top: 0;
     bottom: 0;
     margin: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 th{
@@ -138,6 +144,7 @@ th{
     cursor: pointer;
   }
 
+  .riddleStatus,
   .isItCheck{
     font-size: 3rem;
     font-family: Arial;
@@ -149,9 +156,14 @@ th{
     margin-bottom: 1%;
     box-shadow: var(--shadow);
   }
+  
+  .riddleStatus{
+    width: 98vw;
+  }
 
   /*==================================GameDetails===================================*/
 
+  .roleIndicator,
   .moveIndicator{
     height: 5vw;
     width: 5vw;
@@ -178,6 +190,29 @@ th{
     align-self: center;
 }
 
+.move#riddle{
+    display: flex; 
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 5%;
+    box-shadow: var(--shadow);
+    background-color: var(--headerfooter);
+    padding: 3%;
+    width: 20vw;
+    align-self: center;
+}
+
+.newRiddle{
+    background-color: var(--greenButton);
+    width: 60%;
+    align-self: center;
+    margin-top: auto;
+    text-align: center;
+    padding: 3%;
+    font-size: 1.5rem;
+    margin-bottom: 5%;
+}
+
 .rules,
 .matchDetails{
     background-color: var(--detailColor);
@@ -189,6 +224,11 @@ th{
     flex-direction: column;
     box-shadow: var(--shadow);
     align-self: flex-start;
+}
+
+.matchDetails#riddle{
+    width: 40vw;
+    height: fit-content;
 }
 
 .rules{
@@ -214,7 +254,7 @@ th{
     align-self: center;
     margin-top: 10%;
     margin-bottom: 8%;
-    background-color: rgb(62, 213, 62);
+    background-color: var(--greenButton);
     border: none;
     padding: 3%;
 }
@@ -222,7 +262,7 @@ th{
 .viewRules{
     margin-top: 20%;
     margin-bottom: 8%;
-    background-color: rgb(62, 213, 62);
+    background-color: var(--greenButton);
     border: none;
     padding: 3%;
     width: 70%;
@@ -296,6 +336,7 @@ video{
     background-color: var(--hoverColor);
 }
 
+.newRiddle:hover,
 .viewRules:hover,
 .restartButton:hover{
     cursor: pointer;
@@ -323,6 +364,10 @@ video{
     max-height: 30%;
     background-color: var(--headerfooter);
     box-shadow: var(--shadow);
+}
+
+.promotingPieces#riddle{
+    width: 50%;
 }
 
 .promotion:hover{
